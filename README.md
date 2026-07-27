@@ -58,7 +58,7 @@ $env:GEMINI_API_KEY = "your-api-key"
 node index.js
 ```
 
-새 LLM을 추가하려면 `src/llm/providers/`에 `generateJson({ systemPrompt, userPrompt })`를 구현한 provider를 만들고 `src/llm/index.js`에 등록하면 됩니다.
+새 LLM을 추가하려면 `src/llm/providers/`에 provider 파일을 만듭니다. 각 provider는 자신의 기본 모델, API 키 환경 변수, API 호출 방식과 `generateJson({ systemPrompt, userPrompt })`를 관리합니다. `src/llm/index.js`에는 provider 이름과 모듈만 등록합니다.
 
 ## Test
 
@@ -99,4 +99,3 @@ src/
 - `config.json` and `.env` are excluded from Git to protect API keys.
 - Forge/modded servers can change block, item, entity, and pathfinding behavior. Test server-specific behavior before relying on the bot.
 - This is a personal learning project. Feel free to modify and extend it under the MIT License.
-

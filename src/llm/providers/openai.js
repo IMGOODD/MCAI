@@ -1,6 +1,20 @@
 const { OpenAI } = require('openai');
 
-function createOpenAIProvider({ apiKey, baseURL, model }) {
+const DEFAULT_SETTINGS = {
+  model: 'gpt-5.4-mini',
+  apiKeyEnv: 'OPENAI_API_KEY'
+};
+
+function resolveSettings(settings = {}) {
+  const resolved = { ...DEFAULT_SETTINGS, ...settings };
+  return {
+    ...resolved,
+    apiKey: process.env[resolved.apiKeyEnv] || resolved.apiKey || null
+  };
+}
+
+function create(settings = {}) {
+  const { apiKey, baseURL, model } = resolveSettings(settings);
   if (!apiKey) throw new Error('OPENAI_API_KEY is not configured.');
 
   const client = new OpenAI({ apiKey, ...(baseURL ? { baseURL } : {}) });
@@ -23,4 +37,4 @@ function createOpenAIProvider({ apiKey, baseURL, model }) {
   };
 }
 
-module.exports = { createOpenAIProvider };
+module.exports = { create, resolveSettings, DEFAULT_SETTINGS };
