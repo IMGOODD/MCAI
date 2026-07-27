@@ -1,6 +1,8 @@
 # MCAI
 
-Minecraft 채팅 명령을 LLM이 최종 목표 JSON으로 해석하고, planner가 제작·채집·제련·장비·사냥 작업으로 분해하는 Mineflayer 기반 에이전트입니다.
+Mincraft에서 자연어 명령을 받아 행동하는 Mineflayer 기반 개인 프로젝트입니다.
+제작, 채집, 제련, 사냥 같은 작업을 planner가 순서대로 나누어 실행합니다.
+아직 실제 서버 환경에서 예외 상황을 계속 수정 중 입니다.
 
 ```text
 Player chat → brain → planner → commands → actions
