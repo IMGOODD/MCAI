@@ -1,1 +1,100 @@
 # MCAI
+
+Minecraft 채팅 명령을 LLM이 최종 목표 JSON으로 해석하고, planner가 제작·채집·제련·장비·사냥 작업으로 분해하는 Mineflayer 기반 에이전트입니다.
+
+```text
+Player chat → brain → planner → commands → actions
+```
+
+## Features
+
+- `minecraft-data` 레시피를 읽는 재귀 제작 planner
+- 인벤토리와 도구 내구도를 반영한 채집 계획
+- 화로, 연료, 재료를 준비하는 제련 계획
+- 장비 제작, 착용, 전달
+- 동물 사냥과 기본적인 적대 몹 방어
+- 상자와 액자를 기준으로 한 인벤토리 정리
+- 문 열기, 물 회피, 보트를 활용한 복귀 이동
+- 엔더 수정 파괴와 엔더 드래곤 전투 흐름
+
+## Setup
+
+```powershell
+npm.cmd install
+Copy-Item config.example.json config.json
+```
+
+`config.json`에서 서버와 LLM 제공자를 설정합니다. 실제 API 키는 파일에 넣지 않고 환경 변수로 설정합니다.
+
+### OpenAI
+
+```json
+"llm": {
+  "provider": "openai",
+  "model": "gpt-5.4-mini",
+  "apiKeyEnv": "OPENAI_API_KEY"
+}
+```
+
+```powershell
+$env:OPENAI_API_KEY = "your-api-key"
+node index.js
+```
+
+### Gemini
+
+```json
+"llm": {
+  "provider": "gemini",
+  "model": "gemini-2.0-flash",
+  "apiKeyEnv": "GEMINI_API_KEY"
+}
+```
+
+```powershell
+$env:GEMINI_API_KEY = "your-api-key"
+node index.js
+```
+
+새 LLM을 추가하려면 `src/llm/providers/`에 `generateJson({ systemPrompt, userPrompt })`를 구현한 provider를 만들고 `src/llm/index.js`에 등록하면 됩니다.
+
+## Test
+
+```powershell
+npm.cmd test
+```
+
+## Command examples
+
+```text
+나무 도끼 만들어
+돌 64개 캐와
+철 2개 재련해 와
+철 방어구 2벌 만들어서 하나는 나 주고 하나는 입어
+고기 15개 모아 와
+주변을 사수해
+정리해
+와봐
+100 64 -200으로 이동
+엔더 드래곤 잡으러 가자
+```
+
+## Project structure
+
+```text
+src/
+├─ actions/     # Mineflayer-level behavior
+├─ commands/    # Command execution and result format
+├─ core/        # Brain, planner, and domain planners
+├─ data/        # Resources, recipes, fuel, combat, and equipment data
+├─ events/      # Chat, lifecycle, safety, defense, and boat events
+├─ llm/         # Provider-independent LLM interface
+└─ utils/       # Shared inventory and planning utilities
+```
+
+## Notes
+
+- `config.json` and `.env` are excluded from Git to protect API keys.
+- Forge/modded servers can change block, item, entity, and pathfinding behavior. Test server-specific behavior before relying on the bot.
+- This is a personal learning project. Feel free to modify and extend it under the MIT License.
+

@@ -1,0 +1,22 @@
+{
+  "name": "0.mcai",
+  "version": "1.0.0",
+  "description": "A Minecraft LLM agent built with Mineflayer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test",
+    "test:unit": "node --test tests/unit",
+    "test:watch": "node --test --watch tests/unit"
+  },
+  "keywords": [],
+  "author": "MCAI contributors",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "minecraft-data": "^3.111.0",
+    "mineflayer": "^4.37.1",
+    "mineflayer-pathfinder": "^2.4.5",
+    "openai": "^6.45.0"
+  }
+}
