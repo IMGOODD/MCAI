@@ -81,21 +81,21 @@ npm.cmd test
 엔더 드래곤 잡으러 가자
 ```
 
-## Project structure
+## 프로젝트 구조
 
 ```text
 src/
-├─ actions/     # Mineflayer-level behavior
-├─ commands/    # Command execution and result format
-├─ core/        # Brain, planner, and domain planners
-├─ data/        # Resources, recipes, fuel, combat, and equipment data
-├─ events/      # Chat, lifecycle, safety, defense, and boat events
-├─ llm/         # Provider-independent LLM interface
-└─ utils/       # Shared inventory and planning utilities
+├─ actions/     # Mineflayer를 직접 동작시키는 행동
+├─ commands/    # 명령 실행과 반환값 처리
+├─ core/        # brain, planner와 영역별 planner
+├─ data/        # 자원, 레시피, 연료, 전투와 장비 데이터
+├─ events/      # 채팅, 생명주기, 안전, 방어와 보트 이벤트
+├─ llm/         # LLM provider 선택과 API 연결
+└─ utils/       # 인벤토리와 계획에서 공통으로 사용하는 기능
 ```
 
-## Notes
+## 참고사항
 
-- `config.json` and `.env` are excluded from Git to protect API keys.
-- Forge/modded servers can change block, item, entity, and pathfinding behavior. Test server-specific behavior before relying on the bot.
-- This is a personal learning project. Feel free to modify and extend it under the MIT License.
+- API 키를 보호하기 위해 `config.json`과 `.env`는 Git에 포함하지 않습니다.
+- Forge와 모드 서버에서는 블록, 아이템, 엔티티와 길 찾기 동작이 달라질 수 있습니다. 사용하는 서버에서 직접 테스트한 뒤 사용해 주세요.
+- 개인 학습용 프로젝트입니다. MIT 라이선스에 따라 자유롭게 수정하고 확장해서 사용할 수 있습니다.
