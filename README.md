@@ -1,8 +1,8 @@
 # MCAI
 
-Mincraft에서 자연어 명령을 받아 행동하는 Mineflayer 기반 개인 프로젝트입니다./n
-제작, 채집, 제련, 사냥 같은 작업을 planner가 순서대로 나누어 실행합니다./n
-아직 실제 서버 환경에서 예외 상황을 계속 수정 중 입니다./n
+Mincraft에서 자연어 명령을 받아 행동하는 Mineflayer 기반 개인 프로젝트입니다.\n
+제작, 채집, 제련, 사냥 같은 작업을 planner가 순서대로 나누어 실행합니다.\n
+아직 실제 서버 환경에서 예외 상황을 계속 수정 중 입니다.\n
 
 ```text
 Player chat → brain → planner → commands → actions
